@@ -15,7 +15,7 @@ function App() {
 
     for (let i = 1; i <= length; i++) {
       let char = Math.floor(Math.random() * str.length + 1)
-      pass = str.charAt(char)
+      pass += str.charAt(char) // Fixed to append each character to pass
     }
 
     setPaswword(pass)
@@ -23,14 +23,13 @@ function App() {
   }, [length, numberAllowed, charAllowed, setPaswword])
 
   return (
-    <>
+    <div className="flex justify-center items-center min-h-screen ">
       <div className='w-full max-w-md mx-auto shadow-md rounded-lg p-3 text-orange-500 bg-gray-800'>
-        <h1 className='text-white text-center mb-4' >Password Generator</h1>
-        <div className="flex rounded-lg overflow-hidden" >
+        <h1 className='text-white text-center mb-4'>Password Generator</h1>
+        <div className="flex rounded-lg overflow-hidden">
           <input type="text"
             value={password}
-            className="outline-none w-full py-1 px-3 
-          "
+            className="outline-none w-full py-1 px-3"
             placeholder='password'
             readOnly
           />
@@ -43,13 +42,14 @@ function App() {
               min={6}
               max={100}
               value={length}
+              onChange={(e) => setLength(e.target.value)}
               className='cursor-pointer'
             />
             <label>Length : {length}</label>
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
